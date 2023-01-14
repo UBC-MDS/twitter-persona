@@ -16,7 +16,7 @@ The package twitterpersona is intended to provide insight into a twitter user ba
 **create_wordcloud** : Generates a word cloud of most frequently used words in tweets. 
 
 ## Scope and Fit
-There are existing packages that preform tweet and text analysis focusing on sentiment (including `tweet-scraper`,  `tweet-sentiment`, and `pytweet`). However, none of these packages focus of providing metrics in the context of determining if the twitter user is worth engadging with.
+There are existing packages that preform tweet analysis (including [twitter-sentiment-analysis](https://github.com/abdulfatir/twitter-sentiment-analysis), [tweetlytics](https://github.com/UBC-MDS/tweetlytics), and [pytweet](https://github.com/UBC-MDS/pytweet)). However, none of these packages focus of providing metrics in the context of determining if the twitter user is worth engadging with.
 
 ## Contributing
 
