@@ -1,16 +1,10 @@
 # twitterpersona
 
-Assess whether a twitter is positive or negative based on the user's recent tweets
+Assess a twitter user's character  based on their recent tweets
 
-## Installation
-
-```bash
-$ pip install twitterpersona
-```
-
-## Usage
-
-- TODO
+## Summary
+Twitter is a popular social media app with over 1 billion user accounts. While a diversity of users is a strength, some individuals have concerns with the prevalence of "troll" accounts and individuals who exhibit unconstructive tone and diction whom not worth engadging with. 
+The package twitterpersona is intended to provide insight into a twitter user based on their tweet history in effort to determine if an account is worth engadging with. The package provides an easy to use interface for determining the general sentiment expressed by a tweeter. 
 
 ## Contributing
 
