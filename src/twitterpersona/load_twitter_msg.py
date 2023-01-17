@@ -1,53 +1,59 @@
-def load_twitter(input_file):
-    """Load twitter dataset from a csv file and return as a dataframe.
+import pandas as pd
+import tweepy
+from utils.auth import authHandler # adding utils function for auth
+
+def load_twitter_by_user(user, limit):
+    """Load dataframe which contains specific user and return as a dataframe with total tweets.
     Parameters
     ----------
-    input_file : str
-        Path to text file.
+    user : str
+        twitter user_name.
+
+    limit : int
+        how many tweets you wanna return.
     Returns
     -------
     dataframe
-        dataframe contains all twitter info from dataset.
+        dataframe contains username's twitter info.
     Examples
     --------
-    load_twitter("twitter.csv")
+    load_twitter_by_user('Cristiano', 300)
     """
+    api = authHandler()
+    tweets = tweepy.Cursor(api.user_timeline, screen_name=user, count=200, tweet_mode='extended').items(limit)
+    # create DataFrame
+    columns = ['User', 'Id', "created_at","favorite_count","retweet_count", "text" ]
+    data = []
+    for tweet in tweets:
+        data.append([tweet.user.screen_name, tweet.id_str, tweet.created_at, tweet.favorite_count, tweet.retweet_count, tweet.full_text.encode("utf-8").decode("utf-8")])
+        df = pd.DataFrame(data, columns=columns)
+    return df
 
 
-def load_twitter_by_user(twitter_df, username):
-    """Load dataframe which contains specific user from a complete twitter dataframe and return as a dataframe.
+
+def load_twitter_by_keywords(key, limit):
+    """Load dataframe which contains specific user and return as a dataframe with total tweets.
     Parameters
     ----------
-    twitter_df : dataframe
-        complete twitter dataframe.
+    key : str
+        tweets keyword.
 
-    username : str
-        specific username for twitter message.
+    limit : int
+        how many tweets you wanna return.
     Returns
     -------
     dataframe
-        dataframe contains username's twitter info from dataset.
+        dataframe contains username's twitter info.
     Examples
     --------
-    load_twitter_by_user(twitter_df, 'andy')
+    load_twitter_by_keywords('2022', 100)
     """
-
-
-
-def load_twitter_by_id(twitter_df, user_id):
-    """Load dataframe which contains specific userId from a complete twitter dataframe and return as a dataframe.
-    Parameters
-    ----------
-    twitter_df : dataframe
-        complete twitter dataframe.
-
-    user_id : str
-        specific userId for twitter message.
-    Returns
-    -------
-    dataframe
-        dataframe contains userId's twitter info from dataset.
-    Examples
-    --------
-    load_twitter_by_id(twitter_df, '12345')
-    """
+    api = authHandler()
+    tweets = tweepy.Cursor(api.search_tweets, q=key, count=100, tweet_mode='extended').items(limit)
+    # create DataFrame
+    columns = ['User', 'Id', "created_at","favorite_count","retweet_count", "text" ]
+    data = []
+    for tweet in tweets:
+        data.append([tweet.user.screen_name, tweet.id_str, tweet.created_at, tweet.favorite_count, tweet.retweet_count, tweet.full_text.encode("utf-8").decode("utf-8")])
+        df = pd.DataFrame(data, columns=columns)
+    return df
