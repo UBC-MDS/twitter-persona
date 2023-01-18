@@ -1,11 +1,15 @@
 import tweepy
+from dotenv import load_dotenv
+import os
 
 def authHandler():
 
-    consumer_key = 'd2SlnFPCIkVAMTsF9GtBr3QXn'
-    consumer_secret = 'amjTUjgDsrxlj7ZFeXt7249vUIrZtkKKYSKnxPEwMRqLdeNmnw'
-    access_token = '1570310343091703808-KSFGDj2KZTGmJuaGXLwb8AYLqcIQt8'
-    access_token_secret = 'xvKT1PPLkuA51l4pCZGEgMlNUythyR8AoW4xQq6DExCGV'
+    load_dotenv()
+
+    consumer_key = os.getenv('CONSUMER_KEY')
+    consumer_secret = os.getenv('CONSUMER_SECRET')
+    access_token = os.getenv('ACCESS_TOKEN')
+    access_token_secret = os.getenv('ACCESS_TOKEN_SECRET')
     
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
