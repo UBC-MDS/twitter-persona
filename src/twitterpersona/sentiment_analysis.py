@@ -1,25 +1,24 @@
-def get_sentiment_result(df, sentiment):
-    """get Negative, Positive, or Neutral twitters from processed dataframe.
+def sentiment_labler(df):
+    """labelling each tweet a given twitter dataframe with positive, negative or neutral sentiment
     Parameters
     ----------
-    df : pd.DataFrame
+    df : pd.DataFrame or pd.Series
         dataframe after pre-processing
-    
-    sentiment : str
-        string represent positive, negative or neutral sentiment
     
     Returns
     -------
     dataframe
-        dataframe contains all tweets info for a specific sentiment.
+        dataframe contains all tweets the corresponding labels
     Examples
     --------
-    get_sentiment_result(df, 'positive')
+    get_sentiment_result(df)
     """
+    from nltk.sentiment.vader import SentimentIntensityAnalyzer
+    sid = SentimentIntensityAnalyzer()
 
 
 def count_tweets(df):
-    """count how many tweets in each sentiment dataframe
+    """count how propotion of tweets in each sentiment dataframe
     Parameters
     ----------
     df : pd.DataFrame
