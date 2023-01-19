@@ -1,35 +1,67 @@
-def get_sentiment_result(df, sentiment):
-    """get Negative, Positive, or Neutral twitters from processed dataframe.
+def sentiment_labler(df, col):
+    """labelling each row in a given column of tweets/text with positive, negative or neutral sentiment
     Parameters
     ----------
     df : pd.DataFrame
         dataframe after pre-processing
     
-    sentiment : str
-        string represent positive, negative or neutral sentiment
+    col : str
+        column name of the tweets in the dataset
     
     Returns
     -------
     dataframe
-        dataframe contains all tweets info for a specific sentiment.
+        dataframe contains all tweets the corresponding labels
     Examples
     --------
-    get_sentiment_result(df, 'positive')
+    get_sentiment_result(df, "text")
     """
+    from nltk.sentiment.vader import SentimentIntensityAnalyzer
+    sid = SentimentIntensityAnalyzer()
+
+    def extract_sentiment(text):
+        #Only three labels used by NLTK sentiment analyzer: neutral, positive and negative
+        #each with a score
+        #The sentiment is calculated based on the compound score with thresholds explained in:
+        #https://towardsdatascience.com/social-media-sentiment-analysis-in-python-with-vader-no-training-required-4bc6a21e87b8
+        scores = sid.polarity_scores(text)
+        if scores["compound"] > 0.05:
+            return "positive"
+        elif scores["compound"] < -0.05:
+            return "negative"
+        else:
+            return "neutral"
+
+    labelled_df = df.assign(sentiment=df[col].apply(extract_sentiment))
+    return labelled_df
 
 
-def count_tweets(df):
-    """count how many tweets in each sentiment dataframe
+def count_tweets(df, proportion= True):
+    """count the propotion of different sentiment tweets in a labelled sentiment dataframe
     Parameters
     ----------
     df : pd.DataFrame
         dataframe for each sentiment
     
+    proportion : bool
+        if True: returns the proportion; otherwise, return the counts
+    
     Returns
     -------
-    dataframe
-        dataframe contains number of tweets for each sentiment dataframe
+    dicitionary
+        a dicionary calculates the proportion of three sentiments of tweets
     Examples
     --------
-    count_tweets(df)
+    labelled_df = get_sentiment_result(df, "text")
+    count_tweets(labelled_df)
     """
+
+    if proportion:
+        sentiment_counts = df['sentiment'].value_counts(normalize = True)
+    else:
+        sentiment_counts = df['sentiment'].value_counts()
+
+    return dict(sentiment_counts)
+
+
+    
