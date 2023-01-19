@@ -36,18 +36,32 @@ def sentiment_labler(df, col):
     return labelled_df
 
 
-def count_tweets(df):
-    """count how propotion of tweets in each sentiment dataframe
+def count_tweets(df, proportion= True):
+    """count the propotion of different sentiment tweets in a labelled sentiment dataframe
     Parameters
     ----------
     df : pd.DataFrame
         dataframe for each sentiment
     
+    proportion : bool
+        if True: returns the proportion; otherwise, return the counts
+    
     Returns
     -------
     dicitionary
-        a dicionary contains the proportion of three sentiment of tweets
+        a dicionary calculates the proportion of three sentiments of tweets
     Examples
     --------
-    count_tweets(df)
+    labelled_df = get_sentiment_result(df, "text")
+    count_tweets(labelled_df)
     """
+
+    if proportion:
+        sentiment_counts = df['sentiment'].value_counts(normalize = True)
+    else:
+        sentiment_counts = df['sentiment'].value_counts()
+
+    return dict(sentiment_counts)
+
+
+    
