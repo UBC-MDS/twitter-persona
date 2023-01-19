@@ -1,4 +1,5 @@
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import pandas as pd
 
 def sentiment_labler(df, col):
     """labelling each row in a given column of tweets/text with positive, negative or neutral sentiment
