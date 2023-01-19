@@ -1,3 +1,6 @@
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import pandas as pd
+
 def sentiment_labler(df, col):
     """labelling each row in a given column of tweets/text with positive, negative or neutral sentiment
     Parameters
@@ -14,9 +17,8 @@ def sentiment_labler(df, col):
         dataframe contains all tweets the corresponding labels
     Examples
     --------
-    get_sentiment_result(df, "text")
+    sentiment_labler(df, "text")
     """
-    from nltk.sentiment.vader import SentimentIntensityAnalyzer
     sid = SentimentIntensityAnalyzer()
 
     def extract_sentiment(text):
@@ -52,7 +54,7 @@ def count_tweets(df, proportion= True):
         a dicionary calculates the proportion of three sentiments of tweets
     Examples
     --------
-    labelled_df = get_sentiment_result(df, "text")
+    labelled_df = sentiment_labler(df, "text")
     count_tweets(labelled_df)
     """
 
