@@ -640,6 +640,18 @@ socks = ["requests[socks] (>=2.27.0,<3)"]
 test = ["vcrpy (>=1.10.3)"]
 
 [[package]]
+name = "tweet-preprocessor"
+version = "0.6.0"
+description = "Elegant tweet preprocessing"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "tweet-preprocessor-0.6.0.tar.gz", hash = "sha256:827d20d4c3ab8f8c3a084a56991b061be77bdf1d2e30b6b0d930f7f0e140b961"},
+    {file = "tweet_preprocessor-0.6.0-py3-none-any.whl", hash = "sha256:303ce6f1c788cde01eb279a2cc5035d493a31b5a2fb7f8e2a1679d7e1e3e1fa6"},
+]
+
+[[package]]
 name = "urllib3"
 version = "1.26.14"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -659,4 +671,4 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "a4a9893dc40a67f92c02cefb916d95280d885b58a1f99ffae09b1f1c04ef900b"
+content-hash = "7834d9e33232ba751cbd014cb0e1ef5d86828049596d2d2b56e234738037da14"
