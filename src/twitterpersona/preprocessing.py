@@ -6,7 +6,7 @@ from nltk.corpus import stopwords
 
 def generalPreprocessing(df: pd.DataFrame) -> pd.DataFrame:
     '''
-    Perform general preprocessing on df
+    Perform general preprocessing on df. Removes retweets/favourites and cleans URLs, Mentions, Numbers, and stop words.  
     
     Parameters
     ----------
@@ -19,12 +19,11 @@ def generalPreprocessing(df: pd.DataFrame) -> pd.DataFrame:
     Returns
     -------
     df : pd.DataFrame
-        preprocessed (fix type, drop unused column, arrange column order, add text column) dataframe and export as a csv file.
+        processed tweet dataframe.
         
     Examples
     --------
     generalPreprocessing(df)
-    df object
     '''
 
     # remove retweets/favourites
