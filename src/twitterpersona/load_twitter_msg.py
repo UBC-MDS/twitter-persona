@@ -1,8 +1,21 @@
 import pandas as pd
 import tweepy
-from utils.auth import authHandler # adding utils function for auth
+#from utils.auth import authHandler # adding utils function for auth
 
-def load_twitter_by_user(user, limit):
+
+def user_info(consumer_key_input, consumer_secret_input, access_token_input, access_token_secret_input):
+
+    user_info = {
+    "consumer_key": consumer_key_input,
+    "consumer_secret": consumer_secret_input,
+    "access_token": access_token_input,
+    "access_token_secret": access_token_secret_input
+    }
+
+    return user_info
+
+
+def load_twitter_by_user(user, limit, user_info):
     """Load dataframe which contains specific user and return as a dataframe with total tweets.
     Parameters
     ----------
@@ -19,7 +32,16 @@ def load_twitter_by_user(user, limit):
     --------
     load_twitter_by_user('Cristiano', 300)
     """
-    api = authHandler()
+
+    consumer_key = user_info['consumer_key']
+    consumer_secret = user_info['consumer_secret']
+    access_token = user_info['access_token']
+    access_token_secret = user_info['access_token_secret']
+    
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth)
+
     tweets = tweepy.Cursor(api.user_timeline, screen_name=user, count=200, tweet_mode='extended').items(limit)
     # create DataFrame
     columns = ['User', 'Id', "created_at","favorite_count","retweet_count", "text" ]
@@ -31,7 +53,7 @@ def load_twitter_by_user(user, limit):
 
 
 
-def load_twitter_by_keywords(key, limit):
+def load_twitter_by_keywords(key, limit, user_info):
     """Load dataframe which contains specific user and return as a dataframe with total tweets.
     Parameters
     ----------
@@ -48,7 +70,15 @@ def load_twitter_by_keywords(key, limit):
     --------
     load_twitter_by_keywords('2022', 100)
     """
-    api = authHandler()
+    consumer_key = user_info['consumer_key']
+    consumer_secret = user_info['consumer_secret']
+    access_token = user_info['access_token']
+    access_token_secret = user_info['access_token_secret']
+    
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    
+    api = tweepy.API(auth)
     tweets = tweepy.Cursor(api.search_tweets, q=key, count=100, tweet_mode='extended').items(limit)
     # create DataFrame
     columns = ['User', 'Id', "created_at","favorite_count","retweet_count", "text" ]
