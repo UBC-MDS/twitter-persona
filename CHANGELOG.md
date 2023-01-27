@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.0 (2023-01-27)
+### Feature
+* **package:** Update code in load_twitter_msg ([`1045592`](https://github.com/UBC-MDS/twitter-persona/commit/10455929f03f2e15370173f5598ff49e28239cf8))
+
 ## v0.1.0 (2023-01-27)
 ### Feature
 * **package:** Add code in load_twitter_msg ([`77face9`](https://github.com/UBC-MDS/twitter-persona/commit/77face9241dc89bdca242f2a513b9b594f34c874))
