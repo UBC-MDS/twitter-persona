@@ -2,7 +2,6 @@ import pandas as pd
 import tweepy
 #from utils.auth import authHandler # adding utils function for auth
 
-
 def user_info(consumer_key_input, consumer_secret_input, access_token_input, access_token_secret_input):
 
     user_info = {
