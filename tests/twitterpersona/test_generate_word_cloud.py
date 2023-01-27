@@ -17,7 +17,7 @@ def pos_input_df():
     input = pd.DataFrame({'User': {0: 'Timmy', 1: 'Timmy', 2: 'Timmy', 3: 'Timmy'},
                   'text': {0: 'I absolutely love it here! I think moving here was one of the best decisions of my life.',
                             1: "This is an incredibly exciting game and I recommend that everyone who likes this genre gives it a go!",
-                            2: "I went out with my firends last night: we het the town, had some drinks, and ended up doing karaoke! Such a good time"
+                            2: "I went out with my firends last night: we het the town, had some drinks, and ended up doing karaoke! Such a good time",
                             3: "I received a really good grade for my python package! I'm so happy!"
                             }})
     return input
