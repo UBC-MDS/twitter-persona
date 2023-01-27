@@ -1,3 +1,4 @@
+[![ci-cd](https://github.com/UBC-MDS/twitter-persona/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/twitter-persona/actions/workflows/ci-cd.yml) ![PyPI](https://img.shields.io/pypi/v/twitterpersona) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 # twitterpersona
 
 Assess a twitter user's character  based on their recent tweets
