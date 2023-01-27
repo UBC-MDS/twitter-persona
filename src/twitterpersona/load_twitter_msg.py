@@ -14,7 +14,6 @@ def user_info(consumer_key_input, consumer_secret_input, access_token_input, acc
 
     return user_info
 
-
 def load_twitter_by_user(user, limit, user_info):
     """Load dataframe which contains specific user and return as a dataframe with total tweets.
     Parameters
