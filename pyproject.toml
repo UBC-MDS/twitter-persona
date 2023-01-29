@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "twitterpersona"
-version = "0.1.0"
+version = "0.3.0"
 description = "Assess whether a twitter is positive or negative based on the user's recent tweets"
 authors = ["Andy Wang, Renzo Wijngaarden, Roan Raina, Yurui Feng"]
 license = "MIT"
@@ -26,6 +26,8 @@ jupyter = "^1.0.0"
 myst-nb = {version = "^0.17.1", python = "^3.9"}
 sphinx-autoapi = "^2.0.1"
 sphinx-rtd-theme = "^1.1.1"
+pytest-cov = "^4.0.0"
+python-semantic-release = "^7.33.0"
 
 [tool.semantic_release]
 version_variable = "pyproject.toml:version" # version location

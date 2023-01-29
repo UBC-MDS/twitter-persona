@@ -1,10 +1,43 @@
 import pandas as pd
 import tweepy
-from utils.auth import authHandler # adding utils function for auth
+#from utils.auth import authHandler # adding utils function for auth
 
-def load_twitter_by_user(user, limit):
+
+def user_info(consumer_key_input, consumer_secret_input, access_token_input, access_token_secret_input):
+    """Take four input parameters with user credentials and stored in a list object.
+    Parameters
+    ----------
+    consumer_key_input : str
+        twitter consumer key.
+
+    consumer_secret_input : str
+        twitter consumer secret.
+
+    access_token_input  : str
+        twitter token.
+
+    access_token_secret_input : str
+        twitter token secret.
+    
+    Returns
+    -------
+    user_info : list 
+        list contains above user info.
+    Examples
+    --------
+    user_info('consumer_key_input', 'consumer_secret_input', 'access_token_input', 'access_token_secret_input')
     """
-    Load dataframe which contains specific user and return as a dataframe with total tweets.
+    user_info = {
+    "consumer_key": consumer_key_input,
+    "consumer_secret": consumer_secret_input,
+    "access_token": access_token_input,
+    "access_token_secret": access_token_secret_input
+    }
+
+    return user_info
+
+def load_twitter_by_user(user, limit, user_info):
+    """Load dataframe which contains specific user and return as a dataframe with total tweets.
     Parameters
     ----------
     user : str
@@ -22,8 +55,15 @@ def load_twitter_by_user(user, limit):
     --------
     load_twitter_by_user('Cristiano', 300)
     """
+    consumer_key = user_info['consumer_key']
+    consumer_secret = user_info['consumer_secret']
+    access_token = user_info['access_token']
+    access_token_secret = user_info['access_token_secret']
+    
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth)
 
-    api = authHandler()
     tweets = tweepy.Cursor(api.user_timeline, screen_name=user, count=200, tweet_mode='extended').items(limit)
 
     # create DataFrame
@@ -37,11 +77,8 @@ def load_twitter_by_user(user, limit):
     return df
 
 
-
-def load_twitter_by_keywords(key, limit):
-    """
-    Load dataframe which contains specific user and return as a dataframe with total tweets.
-
+def load_twitter_by_keywords(key, limit, user_info):
+    """Load dataframe which contains specific user and return as a dataframe with total tweets.
     Parameters
     ----------
     key : str
@@ -59,7 +96,15 @@ def load_twitter_by_keywords(key, limit):
     --------
     load_twitter_by_keywords('2022', 100)
     """
-    api = authHandler()
+    consumer_key = user_info['consumer_key']
+    consumer_secret = user_info['consumer_secret']
+    access_token = user_info['access_token']
+    access_token_secret = user_info['access_token_secret']
+    
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    
+    api = tweepy.API(auth)
     tweets = tweepy.Cursor(api.search_tweets, q=key, count=100, tweet_mode='extended').items(limit)
 
     # create DataFrame

@@ -1,5 +1,8 @@
+import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
+
+nltk.download("vader_lexicon")
 
 def sentiment_labler(df, col):
     """

@@ -4,6 +4,7 @@ import pandas as pd
 
 @pytest.fixture
 def potus_df():
+    """create fixutre potus_df with POTUS df"""
     input = pd.DataFrame({'User': {20: 'POTUS', 21: 'POTUS', 22: 'POTUS', 23: 'POTUS', 24: 'POTUS', 25: 'POTUS', 26: 'POTUS', 27: 'POTUS'},
                   'text': {20: 'In America, we go forward when we go together.',
                             21: "Like Dr. King, I know that there is nothing beyond this nation's capacity. \n\nWe will fulfill the promise of America for all Americans. https://t.co/toXTEOtIVj",
@@ -18,6 +19,7 @@ def potus_df():
 
 @pytest.fixture
 def RT_FAV_input_df():
+    """create fixutre RT_FAV_input_df with sample data"""
     df = pd.DataFrame({'User': {1: 'POTUS', 2: 'POTUS', 3: 'POTUS'},
                   'text': {1: 'RT tweet gets removed',
                             2: 'FAV tweet gets removed',
@@ -27,6 +29,7 @@ def RT_FAV_input_df():
 
 @pytest.fixture
 def url_mention_number_input_df():
+    """create fixutre url_mention_number_input_df with sample data"""
     df = pd.DataFrame({'User': {1: 'POTUS', 2: 'POTUS', 3: 'POTUS', 3: 'POTUS'},
                   'text': {1: 'tweet url https://t.co/q6IH0MDAvk',
                             2: 'tweet @POTUS mention',
@@ -37,6 +40,7 @@ def url_mention_number_input_df():
 
 @pytest.fixture
 def stop_words_input_df():
+    """create fixutre stop_words_input_df with sample data"""
     df = pd.DataFrame({'User': {1: 'POTUS', 2: 'POTUS', 3: 'POTUS', 3: 'POTUS'},
                   'text': {1: 'tweet with stop words',
                             2: 'tweet having a stop word and two more',
@@ -46,6 +50,7 @@ def stop_words_input_df():
     return df
 
 def test_RT_FAV_remove(RT_FAV_input_df):
+    """Test the removal of rows that are Retweets or Favourites"""
     clean_df = generalPreprocessing(RT_FAV_input_df)
     df_exp = pd.DataFrame({ 'User': {3: 'POTUS'},
                             'text': {3: 'tweet passes'},
@@ -54,6 +59,7 @@ def test_RT_FAV_remove(RT_FAV_input_df):
     assert clean_df.equals(df_exp)
 
 def test_url_mention_number_remove(url_mention_number_input_df):
+    """Test the removal of urls, mentions, and numbers from tweet text"""
     clean_df = generalPreprocessing(url_mention_number_input_df)
     df_exp = pd.DataFrame({'User': {1: 'POTUS', 2: 'POTUS', 3: 'POTUS'},
                             'text': {1: 'tweet url https://t.co/q6IH0MDAvk',
@@ -70,6 +76,7 @@ def test_url_mention_number_remove(url_mention_number_input_df):
     assert clean_df.equals(df_exp)
 
 def test_stop_words_remove(stop_words_input_df):
+    """test the removal of nltk stopwords from tweet text"""
     clean_df = generalPreprocessing(stop_words_input_df)
     df_exp = pd.DataFrame({'User': {1: 'POTUS', 2: 'POTUS', 3: 'POTUS', 3: 'POTUS'},
                   'text': {1: 'tweet with stop words',
@@ -85,14 +92,17 @@ def test_stop_words_remove(stop_words_input_df):
     assert clean_df.equals(df_exp)
 
 def test_df_shape(potus_df):
+    """tedt expected output shape"""
     clean_df = generalPreprocessing(potus_df)
     assert clean_df.shape == (8, 3)
 
 def test_text_clean_col(potus_df):
+    """Check for text_clean column in output df"""
     clean_df = generalPreprocessing(potus_df)
     assert "text_clean" in clean_df.columns
 
 def test_potus_df(potus_df):
+    """Test funciton on sample real twitter data from @POTIS"""
     clean_df = generalPreprocessing(potus_df)
     df_exp = pd.DataFrame({  'User': {20: 'POTUS', 21: 'POTUS', 22: 'POTUS', 23: 'POTUS', 24: 'POTUS', 25: 'POTUS', 26: 'POTUS', 27: 'POTUS'},
                 'text': {   20: 'In America, we go forward when we go together.',
