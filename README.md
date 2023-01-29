@@ -18,6 +18,7 @@ To get started with `twitterpersona`, install it using `pip`:
 ```bash
 $ pip install twitterpersona
 ```
+Please visit the [documentation](https://twitterpersona.readthedocs.io/en/latest/?badge=latest) for more information and examples.
 
 ## Classes and Functions
 1. `load_twitter_msg`: returns a user's recent tweets (as a dataframe) given their `user id` using the Twitter API.
