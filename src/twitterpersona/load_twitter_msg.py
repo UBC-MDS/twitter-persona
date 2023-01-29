@@ -3,7 +3,29 @@ import tweepy
 #from utils.auth import authHandler # adding utils function for auth
 
 def user_info(consumer_key_input, consumer_secret_input, access_token_input, access_token_secret_input):
+    """Take four input parameters with user credentials and stored in a list object.
+    Parameters
+    ----------
+    consumer_key_input : str
+        twitter consumer key.
 
+    consumer_secret_input : str
+        twitter consumer secret.
+
+    access_token_input  : str
+        twitter token.
+
+    access_token_secret_input : str
+        twitter token secret.
+    
+    Returns
+    -------
+    user_info : list 
+        list contains above user info.
+    Examples
+    --------
+    user_info('consumer_key_input', 'consumer_secret_input', 'access_token_input', 'access_token_secret_input')
+    """
     user_info = {
     "consumer_key": consumer_key_input,
     "consumer_secret": consumer_secret_input,
