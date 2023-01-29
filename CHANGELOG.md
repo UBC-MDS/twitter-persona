@@ -2,6 +2,9 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.3 (2023-01-29)
+
+
 ## v0.2.2 (2023-01-28)
 ### Fix
 * **preprocessing doc:** Added docs for tests funs ([`d2b9a74`](https://github.com/UBC-MDS/twitter-persona/commit/d2b9a74a2f1193f5ae9be4b2c1f87ae2f7838fcd))
