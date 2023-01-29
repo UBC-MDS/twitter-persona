@@ -15,13 +15,13 @@ def create_wordcloud(df):
     Parameters
     ----------
     df : pd.DataFrame
-        dataframe with all the tweets of a user, and their
-        sentiment analysis
+        A dataframe with all the tweets of a user, and their
+        sentiment analysis.
     
     Returns
     -------
     plot : plt.figure()
-        a matplotlib plot of the wordcloud
+        A matplotlib plot of the wordcloud.
     
     Examples
     --------

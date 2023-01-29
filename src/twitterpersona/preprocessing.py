@@ -11,15 +11,15 @@ def generalPreprocessing(df: pd.DataFrame) -> pd.DataFrame:
     Parameters
     ----------
     df : pd.DataFrame
-        dataframe storing all the raw data with text column
+        A dataframe storing all the raw data with text column.
     
     output_path : str
-        the path that the newly generated csv should located at
+        the path that the newly generated csv should located at.
     
     Returns
     -------
     df : pd.DataFrame
-        processed tweet dataframe.
+        The processed tweet dataframe.
         
     Examples
     --------
