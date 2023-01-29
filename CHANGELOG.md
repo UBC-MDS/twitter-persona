@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2023-01-29)
+### Feature
+* **twitter-persona:** Prepare release for milestone 3 ([`c352228`](https://github.com/UBC-MDS/twitter-persona/commit/c352228cd6ee8cb0741cb878fbdc87282ff34439))
+
 ## v0.2.4 (2023-01-29)
 
 
