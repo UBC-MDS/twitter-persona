@@ -72,7 +72,6 @@ def load_twitter_by_user(user, limit, user_info):
     return df
 
 
-
 def load_twitter_by_keywords(key, limit, user_info):
     """Load dataframe which contains specific user and return as a dataframe with total tweets.
     Parameters
