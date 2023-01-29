@@ -30,7 +30,6 @@ def load_twitter_by_user(user, limit, user_info):
     --------
     load_twitter_by_user('Cristiano', 300)
     """
-
     consumer_key = user_info['consumer_key']
     consumer_secret = user_info['consumer_secret']
     access_token = user_info['access_token']
@@ -48,7 +47,6 @@ def load_twitter_by_user(user, limit, user_info):
         data.append([tweet.user.screen_name, tweet.id_str, tweet.created_at, tweet.favorite_count, tweet.retweet_count, tweet.full_text.encode("utf-8").decode("utf-8")])
         df = pd.DataFrame(data, columns=columns)
     return df
-
 
 
 def load_twitter_by_keywords(key, limit, user_info):
