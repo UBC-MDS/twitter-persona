@@ -5,19 +5,23 @@ import pandas as pd
 nltk.download("vader_lexicon")
 
 def sentiment_labler(df, col):
-    """labelling each row in a given column of tweets/text with positive, negative or neutral sentiment
+    """
+    Labelling each row in a given column of tweets/text with positive, negative or neutral sentiment.
+
     Parameters
     ----------
     df : pd.DataFrame
-        dataframe after pre-processing
+        A dataframe that has been pre-processed.
     
     col : str
-        column name of the tweets in the dataset
+        Column name of the column containing tweets in the dataset.
     
     Returns
     -------
-    dataframe
-        dataframe contains all tweets the corresponding labels
+
+    df : pd.DataFrame
+        Dataframe contains all tweets the corresponding labels.
+
     Examples
     --------
     sentiment_labler(df, "text")
@@ -42,19 +46,22 @@ def sentiment_labler(df, col):
 
 
 def count_tweets(df, proportion= True):
-    """count the propotion of different sentiment tweets in a labelled sentiment dataframe
+    """
+    Count the proportion of different sentiment tweets in a labelled sentiment dataframe
+
     Parameters
     ----------
     df : pd.DataFrame
         dataframe for each sentiment
     
     proportion : bool
-        if True: returns the proportion; otherwise, return the counts
+        if True: returns the proportion; otherwise, return the counts.
     
     Returns
     -------
-    dicitionary
-        a dicionary calculates the proportion of three sentiments of tweets
+    dictionary
+        A dictionary which calculates the proportion of three sentiments of tweets.
+
     Examples
     --------
     labelled_df = sentiment_labler(df, "text")
