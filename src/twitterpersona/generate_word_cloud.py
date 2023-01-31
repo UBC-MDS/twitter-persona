@@ -30,10 +30,10 @@ def create_wordcloud(df):
     """
 
     # Import image to np.array
-    url = "https://raw.githubusercontent.com/UBC-MDS/twitter-persona/30d12d4ff486995feb9416672b6b278b969b301d/src/twitterpersona/twitterLogo.png"
+    url = "https://raw.githubusercontent.com/UBC-MDS/twitter-persona/main/src/twitterpersona/twitterLogo.png"
     #mask = np.array(Image.open('twitterLogo.png'))
     mask = Image.open(requests.get(url, stream=True).raw)
-    
+    mask = np.array(mask)
     # Combine all tweets into single string
     text = " ".join(tweet for tweet in df["text_clean"])
 
@@ -41,9 +41,10 @@ def create_wordcloud(df):
     sentiment = count_tweets(df)
 
     # Set wordcloud colour
-    if sentiment.idxmax() == 'positive':
+    label = max(sentiment, key=sentiment.get)
+    if label == 'positive':
         colormap = 'summer'
-    elif sentiment.idxmax() == 'negative':
+    elif label == 'negative':
         colormap = 'autumn'
     else:
         colormap = 'cool'
