@@ -102,7 +102,7 @@ def test_text_clean_col(potus_df):
     assert "text_clean" in clean_df.columns
 
 def test_potus_df(potus_df):
-    """Test funciton on sample real twitter data from @POTIS"""
+    """Test function on sample real twitter data from @POTUS"""
     clean_df = generalPreprocessing(potus_df)
     df_exp = pd.DataFrame({  'User': {20: 'POTUS', 21: 'POTUS', 22: 'POTUS', 23: 'POTUS', 24: 'POTUS', 25: 'POTUS', 26: 'POTUS', 27: 'POTUS'},
                 'text': {   20: 'In America, we go forward when we go together.',
