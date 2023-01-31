@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "twitterpersona"
-version = "0.3.0"
+version = "0.3.4"
 description = "Assess whether a twitter is positive or negative based on the user's recent tweets"
 authors = ["Andy Wang, Renzo Wijngaarden, Roan Raina, Yurui Feng"]
 license = "MIT"
@@ -18,6 +18,7 @@ pillow = "^9.4.0"
 wordcloud = "^1.8.2.2"
 numpy = "^1.24.1"
 urllib3 = "^1.26.14"
+requests = "^2.28.2"
 
 [tool.poetry.dev-dependencies]
 

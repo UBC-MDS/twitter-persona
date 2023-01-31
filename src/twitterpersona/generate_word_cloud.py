@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+import requests
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS
 from twitterpersona.sentiment_analysis import count_tweets
@@ -47,7 +48,6 @@ def create_wordcloud(df):
     for i in range(len(mask)):
         maskable_image[i] = list(map(transform_zeros, mask[i]))
     mask = maskable_image
-
     # Combine all tweets into single string
     text = " ".join(tweet for tweet in df["text_clean"])
 
