@@ -4,6 +4,13 @@ import numpy as np
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS
 from twitterpersona.sentiment_analysis import count_tweets
+import urllib.request
+
+def transform_zeros(val):
+    if val == 0: 
+       return 255
+    else:
+       return val
 
 def create_wordcloud(df):
     """
@@ -28,9 +35,19 @@ def create_wordcloud(df):
     create_wordcloud(df)
     """
 
-    # Import image to np.array
-    mask = np.array(Image.open('twitterLogo.png'))
-    
+    # Import image from URL
+    URL = 'https://www.edigitalagency.com.au/wp-content/uploads/twitter-logo-black-png.png'
+
+    with urllib.request.urlopen(URL) as url:
+        img = Image.open(url)
+        mask = np.array(img)
+
+    # Transform image to usable mask
+    maskable_image = np.ndarray((mask.shape[0],mask.shape[1]), np.int32)
+    for i in range(len(mask)):
+        maskable_image[i] = list(map(transform_zeros, mask[i]))
+    mask = maskable_image
+
     # Combine all tweets into single string
     text = " ".join(tweet for tweet in df["text_clean"])
 
@@ -38,9 +55,9 @@ def create_wordcloud(df):
     sentiment = count_tweets(df)
 
     # Set wordcloud colour
-    if sentiment.idxmax() == 'positive':
+    if max(sentiment, key=sentiment.get) == 'positive':
         colormap = 'summer'
-    elif sentiment.idxmax() == 'negative':
+    elif max(sentiment, key=sentiment.get) == 'negative':
         colormap = 'autumn'
     else:
         colormap = 'cool'
